@@ -67,22 +67,22 @@ resource "aws_lb" "rancher-alb" {
   ip_address_type = "ipv4"
   internal = false
   load_balancer_type = "application"
-  subnets = ["subnet-07b56e7bb20329ac0", "subnet-05a34871871af55fe", "subnet-01207d511966ff0fb"]
+  subnets = ["subnet-09fc21e7e239d7719", "subnet-0460718393ffc7d47", "subnet-0dad90c34999c3f66"]
   security_groups = [aws_security_group.rancher-alb.id]
 }
 
-data "aws_acm_certificate" "cert" {
-  domain = var.domain-name
-  statuses = [ "ISSUED" ]
-  most_recent = true
-}
+# data "aws_acm_certificate" "cert" {
+#   domain = var.domain-name
+#   statuses = [ "ISSUED" ]
+#   most_recent = true
+# }
 
 resource "aws_alb_listener" "rancher-listener1" {
   load_balancer_arn = aws_lb.rancher-alb.arn
   port = 443
-  protocol = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn = data.aws_acm_certificate.cert.arn
+  protocol = "HTTP"
+  //ssl_policy        = "ELBSecurityPolicy-2016-08"
+  //certificate_arn = data.aws_acm_certificate.cert.arn
   default_action {
     type = "forward"
     target_group_arn = aws_alb_target_group.rancher-tg.arn

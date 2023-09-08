@@ -18,17 +18,17 @@ variable "instancetype" {
 }
 
 variable "secgrname" {
-  default = "rancher-server-sec-gr-cumhur"
+  default = "rancher-server-sec-gr-mnforba"
 }
 
 variable "domain-name" {
-  default = "*.devopsavvy.net"
+  default = "*.valaxy.net"
 }
 
 variable "rancher-subnet" {
-  default = "subnet-07b56e7bb20329ac0"
+  default = "subnet-09fc21e7e239d7719"
 }
 
 variable "hostedzone" {
-  default = "devopsavvy.net"
+  default = "valaxy.net"
 }
